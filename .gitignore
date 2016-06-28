@@ -5,8 +5,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore logfiles, tempfiles, and secrets.
+# Ignore logfiles, tempfiles, secrets, and coverage.
 /log/*
 !/log/.keep
 /tmp
 /config/secrets.yml
+/coverage

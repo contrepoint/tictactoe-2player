@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'layouts/navbar' %>
 
-<%= yield %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+
+  <% if Rails.env.development? %>
+    <%= debug(params) %>
+    <%= console %>
+  <% end %>
 
 </body>
 </html>

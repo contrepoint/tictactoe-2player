@@ -1,1 +1,8 @@
-Welcome. Here, you can challenge other users to Tic Tac Toe matches.
+Welcome. Here, you can challenge other users to Tic Tac Toe matches.<br><br>
+
+<% if user_signed_in? %>
+  <%= link_to "Start a New Game?", "new_game_path" %>
+
+  <p>Your current games</p>
+
+<% end %>
