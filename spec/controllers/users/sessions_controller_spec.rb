@@ -5,7 +5,7 @@ RSpec.describe Users::SessionsController, type: :controller do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  it 'should let us log in' do
+  it 'gets sign in page' do
     get :new
     expect(response).to render_template(:new)
   end
