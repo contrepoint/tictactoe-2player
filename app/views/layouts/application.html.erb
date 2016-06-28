@@ -14,5 +14,10 @@
 
   <%= yield %>
 
+  <% if Rails.env.development? %>
+    <%= debug(params) %>
+    <%= console %>
+  <% end %>
+
 </body>
 </html>
