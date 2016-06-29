@@ -11,3 +11,6 @@
 /tmp
 /config/secrets.yml
 /coverage
+
+# Ignore byebug history
+/.byebug_history
