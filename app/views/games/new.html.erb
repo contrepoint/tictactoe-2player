@@ -1,0 +1,10 @@
+Search for a user to challenge!<br><br>
+
+<%= form_tag(games_path, method: "post") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:user_email) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
