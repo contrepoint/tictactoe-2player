@@ -1,0 +1,11 @@
+<div class="board">
+  <% @board.each_with_index do |cell, index| %>
+    <div class="cell">
+      <% if cell == "-" %>
+        <%= link_to cell, board_path(params[:id], position: index), method: :patch %>
+      <% else %>
+        <%= cell %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

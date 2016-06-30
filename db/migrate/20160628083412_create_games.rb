@@ -1,8 +1,8 @@
 class CreateGames < ActiveRecord::Migration
   def change
     create_table :games do |t|
-      t.references :challenger_id, references: :users, null: false
-      t.references :challenged_id, references: :users, null: false
+      t.references :challenger, references: :users, null: false
+      t.references :challenged, references: :users, null: false
       t.integer :board_id, references: :boards
       t.timestamps null: false
     end

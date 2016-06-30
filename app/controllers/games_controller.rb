@@ -19,11 +19,11 @@ class GamesController < ApplicationController
     end
   end
 
-  private
-    def game_params
-      params.require(:game).permit(:challenger)
-    end
+  def show
+    @game = Game.find(params[:id])
+  end
 
+  private
     def set_attributes(challenged_user)
       @game = Game.new do |g|
         g.challenged = challenged_user
