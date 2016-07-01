@@ -15,5 +15,4 @@ class Board < ActiveRecord::Base
 		self.state[position] = marker
     self.save
 	end
-
 end

@@ -30,5 +30,6 @@ RSpec.describe Board, type: :model do
     it "should change the board state by marking the spot" do
       expect{@board.mark_the_spot(4, 'x')}.to change{@board.state[4]}.from('-').to('x')
     end
+    @board = Board.create
   end
 end
