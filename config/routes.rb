@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
 
-  resources :games, only: [:new, :create, :show]
+  resources :games, only: [:new, :create, :show, :update]
   resources :boards, only: [:show, :update]
+
+  # post '/pick_markers' => 'boards#pick_markers'
 end

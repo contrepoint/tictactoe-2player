@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629100244) do
+ActiveRecord::Schema.define(version: 20160704035821) do
 
   create_table "boards", force: :cascade do |t|
     t.integer  "game_id"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20160629100244) do
     t.string   "challenger_user_marker"
     t.string   "challenged_user_marker"
     t.string   "status"
+    t.integer  "winner_id"
+    t.integer  "active_player_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Board, type: :model do
-  before :each do
-    @board = FactoryGirl.create(:new_board)
-    @full_board = FactoryGirl.create(:full_board_tie)
-  end
-
   describe "a newly created board" do
+    before :each do
+      @board = FactoryGirl.create(:new_board)
+    end
+
     it "winning_marker should be nil" do
       expect(@board.winning_marker).to eq(nil)
     end
@@ -16,20 +15,47 @@ RSpec.describe Board, type: :model do
     end
   end
 
-  describe "check whether a cell is empty" do
-    it "should return true for an empty cell" do
-      expect(@board.empty_cell?(rand(0..8))).to eq(true)
+  describe "marking a spot" do
+    context "should first check whether a cell is empty" do
+      it "should return true for an empty cell" do
+        @board = FactoryGirl.create(:new_board)
+        expect(@board.empty_cell?(rand(0..8))).to eq(true)
+      end
+
+      it "should return false for a non-empty cell" do
+        @board_tie = FactoryGirl.create(:board_tie)
+        expect(@board_tie.empty_cell?(rand(0..8))).to eq(false)
+      end
     end
 
-    it "should return false for a non-empty cell" do
-      expect(@full_board.empty_cell?(rand(0..8))).to eq(false)
+    context "should mark the spot on an empty cell" do
+      it "should change the board state by marking the spot" do
+        @board = FactoryGirl.create(:new_board)
+        expect{@board.mark_the_spot(4, 'x')}.to change{@board.state[4]}.from('-').to('x')
+      end
     end
   end
 
-  describe "mark the spot on an empty cell" do
-    it "should change the board state by marking the spot" do
-      expect{@board.mark_the_spot(4, 'x')}.to change{@board.state[4]}.from('-').to('x')
+  describe "endgame states" do
+    it "board is won and full." do
+      @full_board_won = FactoryGirl.create(:full_board_won)
+      expect(@full_board_won.full?).to eq(true)
+      expect(@full_board_won.won?).to eq(true)
+      expect(@full_board_won.tie?).to eq(false)
     end
-    @board = Board.create
+
+    it "board is won and not full. game over." do
+      @non_full_board_won = FactoryGirl.create(:non_full_board_won)
+      expect(@non_full_board_won.full?).to eq(false)
+      expect(@non_full_board_won.won?).to eq(true)
+      expect(@non_full_board_won.tie?).to eq(false)
+    end
+
+    it "board is tied. game over" do
+      @board_tie = FactoryGirl.create(:board_tie)
+      expect(@board_tie.full?).to eq(true)
+      expect(@board_tie.won?).to eq(false)
+      expect(@board_tie.tie?).to eq(true)
+    end
   end
 end

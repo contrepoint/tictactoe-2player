@@ -1,0 +1,3 @@
+<% if @game.challenger_user_marker == nil || @game.challenged_user_marker == nil %>
+  Would you like to be <%= link_to "X", game_path(:marker => 'x'), :method => :patch %> or <%= link_to "O", game_path(:marker => 'o'), :method => :patch %>?
+<% end %>

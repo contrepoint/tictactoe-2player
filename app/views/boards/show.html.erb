@@ -1,11 +1,12 @@
-<div class="board">
-  <% @board.each_with_index do |cell, index| %>
-    <div class="cell">
-      <% if cell == "-" %>
-        <%= link_to cell, board_path(params[:id], position: index), method: :patch %>
-      <% else %>
-        <%= cell %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<%  case @game.status %>
+<%  when "challenge accepted" %>
+  <%= render 'pick_markers' %>
+<%  when "game in progress" %>
+  <%= render 'display_board' %>
+<%  when "game won" %>
+  <%= render 'display_board' %>
+<% when "game tied" %>
+  <%= render 'display_board' %>
+<%  else %>
+ <!-- raise error? -->
+<%  end %>
